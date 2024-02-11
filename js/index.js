@@ -6,7 +6,6 @@ const addButton = document.getElementById("add-button");
 const taskInput = document.getElementById("title-input");
 
 const container = document.getElementById("container");
-const taskContainer = document.getElementById("task-container");
 
 const toast = document.getElementById("toast")
 
@@ -37,8 +36,11 @@ function addTask() {
         return;
     }
 
-    var taskItemContainer = document.createElement("label"); // Change div to label
-    taskItemContainer.className = "checkbox-container"; // Add the class to the container
+    var taskContainer = document.createElement("div");
+    taskContainer.className = "task_container";
+
+    var taskItemContainer = document.createElement("label"); 
+    taskItemContainer.className = "checkbox-container";
 
     var checkbox = document.createElement("input");
     checkbox.type = "checkbox";
@@ -49,16 +51,16 @@ function addTask() {
     textNode.className = "task-text"; // Add the class to the text node
     taskItemContainer.appendChild(textNode);
 
-
     var lineBreak = document.createElement("br");
     taskItemContainer.appendChild(lineBreak);
 
     taskContainer.appendChild(taskItemContainer);
+    document.body.appendChild(taskContainer); 
     taskInput.value = "";
 
-    checkbox.addEventListener("change", function() {
+    checkbox.addEventListener("change", function () {
         if (this.checked) {
-            taskContainer.removeChild(taskItemContainer);
+            document.body.removeChild(taskContainer); 
             showToast("✅", "Completed task!")
         }
     });
