@@ -45,6 +45,7 @@ body {
     border: 2px #1e1e1e solid;
     border-radius: 10px;
 
+    
     transition: 0.3s;
 }
 
@@ -72,6 +73,20 @@ button:hover {
     background-color: rgb(30, 30, 30);
 
     cursor: pointer;
+}
+
+/* Media query for mobile devices */
+@media (max-width: 768px) {
+    .title_input {
+        width: 90%;
+        
+        padding: 10px;
+    }
+
+    button {
+        padding: 10px;
+        margin: 3px;
+    }
 }
 
 .version_text {
