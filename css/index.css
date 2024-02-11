@@ -12,6 +12,7 @@ body {
 }
 
 .task_container {
+    font-size: 13px;
     text-align: left;
 
     background: #191919;
@@ -33,6 +34,7 @@ body {
 
 .title_input {
     font-family: "Noto Sans Mono";
+    font-size: 13px;
 
     height: 5%;
     width: 50%;
@@ -56,7 +58,8 @@ body {
 
 button {
     font-family: "Noto Sans Mono";
-
+    font-size: 13px;
+    
     background: #191919;
     color: white;
 
@@ -74,8 +77,6 @@ button:hover {
 
     cursor: pointer;
 }
-
-
 
 .version_text {
     position:absolute;
@@ -105,14 +106,13 @@ button:hover {
     user-select: none;
 }
 
-/* Container styles */
 .checkbox-container {
-    display: flex; /* Use flexbox for layout */
-    align-items: center; /* Align items vertically */
+    display: flex; 
+    align-items: center; 
+    margin: 0px;
 }
 
 .checkbox {
-    /* Checkbox styles */
     appearance: none;
     -webkit-appearance: none;
     -moz-appearance: none;
@@ -122,7 +122,7 @@ button:hover {
     height: 15px;
     border-radius: 4px;
     cursor: pointer;
-    margin-right: 10px; /* Add some spacing between checkbox and text */
+    margin-right: 10px; 
 
     transition: all 0.3s ease;
 }
@@ -131,16 +131,18 @@ button:hover {
     border: 2px solid white;
 }
 
-/* Media query for mobile devices */
 @media (max-width: 768px) {
     .title_input {
         width: 90%;
         
         padding: 13px;
+
     }
 
     button {
         padding: 10px;
-        margin: 3px;
+
+        margin-top: 10px;
+        margin-bottom: 0px;
     }
 }
