@@ -23,12 +23,11 @@ function showToast(emoji, text) {
     }
 
     // Set new timeout
-    toastTimeout = setTimeout(function() {
+    toastTimeout = setTimeout(function () {
         toast.innerHTML = '';
         toast.style.display = 'none';
     }, 3000);
 }
-
 
 function addTask() {
     var itemContent = taskInput.value;
@@ -38,7 +37,8 @@ function addTask() {
         return;
     }
 
-    var taskItemContainer = document.createElement("div");
+    var taskItemContainer = document.createElement("label"); // Change div to label
+    taskItemContainer.className = "checkbox-container"; // Add the class to the container
 
     var checkbox = document.createElement("input");
     checkbox.type = "checkbox";
@@ -46,7 +46,9 @@ function addTask() {
     taskItemContainer.appendChild(checkbox);
 
     var textNode = document.createTextNode(itemContent);
+    textNode.className = "task-text"; // Add the class to the text node
     taskItemContainer.appendChild(textNode);
+
 
     var lineBreak = document.createElement("br");
     taskItemContainer.appendChild(lineBreak);
@@ -67,7 +69,7 @@ addButton.addEventListener("click", () => {
     addTask()
 });
 
-document.addEventListener("keydown", function(event) {
+document.addEventListener("keydown", function (event) {
     if (event.key === "Enter") {
         addTask()
     }

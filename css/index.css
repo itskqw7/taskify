@@ -101,3 +101,29 @@ button:hover {
 
     user-select: none;
 }
+
+/* Container styles */
+.checkbox-container {
+    display: flex; /* Use flexbox for layout */
+    align-items: center; /* Align items vertically */
+}
+
+.checkbox {
+    /* Checkbox styles */
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    outline: none;
+    border: 2px solid #ccc;
+    width: 20px;
+    height: 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-right: 10px; /* Add some spacing between checkbox and text */
+
+    transition: all 0.3s ease;
+}
+
+.checkbox:hover {
+    border: 2px solid white;
+}
