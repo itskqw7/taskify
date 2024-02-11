@@ -1,0 +1,103 @@
+body {
+    background-color: black;
+    color: white;
+
+    font-family: "Noto Sans Mono";
+}
+
+.container {
+    align-items: center;
+    text-align: center;
+
+}
+
+.task_container {
+    text-align: left;
+
+    background: #191919;
+    color: white;
+
+    padding: 10px;
+    margin: 10px;
+
+    border: 2px #1e1e1e solid;
+    border-radius: 10px;
+
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+
+    max-width: 100%;
+}
+
+
+.title_input {
+    font-family: "Noto Sans Mono";
+
+    height: 5%;
+    width: 50%;
+
+    background: #191919;
+    color: white;
+
+    padding: 10px;
+
+    border: 2px #1e1e1e solid;
+    border-radius: 10px;
+
+    transition: 0.3s;
+}
+
+.title_input:focus {
+    border-bottom-color: white;
+    outline: none;
+}
+
+button {
+    font-family: "Noto Sans Mono";
+
+    background: #191919;
+    color: white;
+
+    padding: 10px;
+    margin: 5px;
+
+    border: 2px #1e1e1e solid;
+    border-radius: 10px;
+
+    transition: 0.3s;
+}
+
+button:hover {
+    background-color: rgb(30, 30, 30);
+
+    cursor: pointer;
+}
+
+.version_text {
+    position:absolute;
+    bottom: 0;
+    right: 0;
+
+    margin: 10px;
+
+    user-select: none;
+}
+
+#toast {
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+
+    background-color: #191919;
+    color: #fff;
+
+    border: 2px #1e1e1e solid;
+    border-radius: 10px;
+
+    padding: 10px;
+
+    user-select: none;
+}
