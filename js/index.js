@@ -28,14 +28,30 @@ function showToast(emoji, text) {
     }, 3000);
 }
 
-function addTask() {
-    var itemContent = taskInput.value;
+function setCookie(cname, cvalue, exdays) {
+    var d = new Date();
+    d.setTime(d.getTime() + (exdays*24*60*60*1000));
+    var expires = "expires="+ d.toUTCString();
+    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+}
 
-    if (itemContent.trim() === "") {
-        showToast("❌", "Please enter a task.")
-        return;
+function getCookie(cname) {
+    var name = cname + "=";
+    var decodedCookie = decodeURIComponent(document.cookie);
+    var ca = decodedCookie.split(';');
+    for(var i = 0; i <ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+        }
     }
+    return "";
+}
 
+function createTask(itemContent) {
     var taskContainer = document.createElement("div");
     taskContainer.className = "task_container";
 
@@ -56,15 +72,51 @@ function addTask() {
 
     taskContainer.appendChild(taskItemContainer);
     document.body.appendChild(taskContainer); 
-    taskInput.value = "";
 
     checkbox.addEventListener("change", function () {
         if (this.checked) {
             document.body.removeChild(taskContainer); 
             showToast("✅", "Completed task!")
+
+            // Remove task from cookies
+            var tasks = getCookie("tasks").split(",");
+            var index = tasks.indexOf(itemContent);
+            if (index > -1) {
+                tasks.splice(index, 1);
+            }
+            setCookie("tasks", tasks.join(","), 30);
         }
     });
 }
+
+function addTask() {
+    var itemContent = taskInput.value;
+
+    if (itemContent.trim() === "") {
+        showToast("❌", "Please enter a task.")
+        return;
+    }
+
+    createTask(itemContent);
+
+    // Store task in cookies
+    var tasks = getCookie("tasks");
+    tasks = tasks ? tasks.split(",") : [];
+    tasks.push(itemContent);
+    setCookie("tasks", tasks.join(","), 30);
+
+    taskInput.value = "";
+}
+
+function loadTasks() {
+    var tasks = getCookie("tasks");
+    tasks = tasks ? tasks.split(",") : [];
+    for (var i = 0; i < tasks.length; i++) {
+        createTask(tasks[i]);
+    }
+}
+
+loadTasks();
 
 // Call functions
 addButton.addEventListener("click", () => {
