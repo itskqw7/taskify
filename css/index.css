@@ -115,6 +115,10 @@ button:hover {
     margin: 0px;
 }
 
+.checkbox-container:hover {
+    cursor: pointer;
+}
+
 .checkbox {
     appearance: none;
     -webkit-appearance: none;
@@ -156,3 +160,4 @@ button:hover {
         padding: 6px;
     }
 }
+
