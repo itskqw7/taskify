@@ -1,7 +1,7 @@
 **what is taskify?**
 -
 
-a simple and *free* task app
+taskify is a simple and *free* task [site](itskqw7.github.io/taskify)
 
 **credits:**
 -
