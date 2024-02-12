@@ -1,4 +1,4 @@
-**what is taksify?**
+**what is taskify?**
 -
 
 a simple and *free* task app
