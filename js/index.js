@@ -30,8 +30,8 @@ function showToast(emoji, text) {
 
 function setCookie(cname, cvalue, exdays) {
     var d = new Date();
-    d.setTime(d.getTime() + (exdays*24*60*60*1000));
-    var expires = "expires="+ d.toUTCString();
+    d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+    var expires = "expires=" + d.toUTCString();
     document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
 }
 
@@ -39,7 +39,7 @@ function getCookie(cname) {
     var name = cname + "=";
     var decodedCookie = decodeURIComponent(document.cookie);
     var ca = decodedCookie.split(';');
-    for(var i = 0; i <ca.length; i++) {
+    for (var i = 0; i < ca.length; i++) {
         var c = ca[i];
         while (c.charAt(0) == ' ') {
             c = c.substring(1);
@@ -51,11 +51,11 @@ function getCookie(cname) {
     return "";
 }
 
-function createTask(itemContent) {
+function createTask(itemContent, selectState) {
     var taskContainer = document.createElement("div");
     taskContainer.className = "task_container";
 
-    var taskItemContainer = document.createElement("label"); 
+    var taskItemContainer = document.createElement("label");
     taskItemContainer.className = "checkbox-container";
 
     var checkbox = document.createElement("input");
@@ -67,15 +67,43 @@ function createTask(itemContent) {
     textNode.className = "task-text"; // Add the class to the text node
     taskItemContainer.appendChild(textNode);
 
+    // Create select element
+    var selectElement = document.createElement("select");
+    selectElement.className = "time";
+    selectElement.id = "time-select";
+
+    // Create options
+    var option1 = document.createElement("option");
+    option1.value = "sooner";
+    option1.text = "Sooner";
+    selectElement.appendChild(option1);
+
+    var option2 = document.createElement("option");
+    option2.value = "later";
+    option2.text = "Later";
+    selectElement.appendChild(option2);
+
+    // Append select element to task container
+    taskContainer.appendChild(selectElement);
+
     var lineBreak = document.createElement("br");
     taskItemContainer.appendChild(lineBreak);
 
     taskContainer.appendChild(taskItemContainer);
-    document.body.appendChild(taskContainer); 
+    document.body.appendChild(taskContainer);
+
+    selectElement.value = selectState || "sooner";
+
+    // Save task-state pair in cookies
+    selectElement.addEventListener("change", function () {
+        var taskStatePairs = JSON.parse(getCookie("taskStatePairs") || "{}");
+        taskStatePairs[itemContent] = selectElement.value;
+        setCookie("taskStatePairs", JSON.stringify(taskStatePairs), 30);
+    });
 
     checkbox.addEventListener("change", function () {
         if (this.checked) {
-            document.body.removeChild(taskContainer); 
+            document.body.removeChild(taskContainer);
             showToast("✅", "Completed task!")
 
             // Remove task from cookies
@@ -85,6 +113,11 @@ function createTask(itemContent) {
                 tasks.splice(index, 1);
             }
             setCookie("tasks", tasks.join(","), 30);
+
+            // Remove task-state pair from cookies
+            var taskStatePairs = JSON.parse(getCookie("taskStatePairs") || "{}");
+            delete taskStatePairs[itemContent];
+            setCookie("taskStatePairs", JSON.stringify(taskStatePairs), 30);
         }
     });
 }
@@ -97,7 +130,7 @@ function addTask() {
         return;
     }
 
-    createTask(itemContent);
+    createTask(itemContent, "sooner"); // Default select state is "sooner"
 
     // Store task in cookies
     var tasks = getCookie("tasks");
@@ -105,14 +138,20 @@ function addTask() {
     tasks.push(itemContent);
     setCookie("tasks", tasks.join(","), 30);
 
+    // Store task-state pair in cookies
+    var taskStatePairs = JSON.parse(getCookie("taskStatePairs") || "{}");
+    taskStatePairs[itemContent] = "sooner";
+    setCookie("taskStatePairs", JSON.stringify(taskStatePairs), 30);
+
     taskInput.value = "";
 }
 
 function loadTasks() {
     var tasks = getCookie("tasks");
+    var taskStatePairs = JSON.parse(getCookie("taskStatePairs") || "{}");
     tasks = tasks ? tasks.split(",") : [];
     for (var i = 0; i < tasks.length; i++) {
-        createTask(tasks[i]);
+        createTask(tasks[i], taskStatePairs[tasks[i]]);
     }
 }
 
