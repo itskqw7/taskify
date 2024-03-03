@@ -1,6 +1,9 @@
-**A BETTER NAME IS COMING**
+**what is taskify?**
 -
 
-a simple and *free* task app
+taskify is a simple and *free* task app
 
-design credits go to https://github.com/wukko/cobalt
+**credits:**
+-
+
+design is based on https://github.com/wukko/cobalt
