@@ -1,4 +1,4 @@
-// Made by KQW7
+// Made by ITSKQW7 ON GITHUB
 console.log("Background service has started.");
 
 // Variables
