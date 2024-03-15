@@ -14,13 +14,13 @@ body {
 }
 
 .task_container {
-    font-size: 13px;
+    font-size: 14px;
     text-align: left;
 
     background: #191919;
     color: white;
 
-    padding: 7px;
+    padding: 5px;
     margin: auto;
     margin-top: 10px;
 
@@ -167,25 +167,27 @@ button:hover {
 @media (max-width: 768px) {
     .container {
         display: flex;
+        flex-direction: column;
         align-items: center;
         text-align: center;
     }
 
     .title_input {
-        width: 70%;
+        width: 90%;
         padding: 10px;
-        font-size: 13px;
-
+        font-size: 14px;
+        margin: 7px;
     }
 
     button {
-        font-size: 13px;
-        padding: 10px;
+        display: none;
     }
 
     .task_container {
         max-width: 90%;
-        padding: 6px;
+        padding: 4px;
+        margin-top: 7px;
+        font-size: 13px;
     }
 }
 

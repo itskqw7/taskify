@@ -1,4 +1,4 @@
-// Made by ITSKQW7 ON GITHUB
+// Made by ITSKQW7 on GitHub
 console.log("Background service has started.");
 
 // Variables
@@ -8,6 +8,14 @@ const taskInput = document.getElementById("title-input");
 const container = document.getElementById("container");
 
 const toast = document.getElementById("toast")
+
+// Detect if the user is on a mobile device
+const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+console.log(isMobile);
+
+if (isMobile) {
+    taskInput.placeholder = "Press enter to add task";
+}
 
 // Functions
 let toastTimeout;
