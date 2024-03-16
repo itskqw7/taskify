@@ -168,6 +168,7 @@ button:hover {
 
 .information_container {
     background: rgba(25, 25, 25, 0.7);
+    -webkit-backdrop-filter: blur(8px);
     backdrop-filter: blur(8px);
     color: white;
     margin: 10px auto;
