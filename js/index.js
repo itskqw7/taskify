@@ -4,6 +4,9 @@ console.log("Background service has started.");
 // Variables
 const addButton = document.getElementById("add-button");
 const taskInput = document.getElementById("title-input");
+const informationButton = document.getElementById("information-button");
+const informationContainer = document.getElementById("information-container");
+const closeInformationContainerButton = document.getElementById("close-button");
 
 const container = document.getElementById("container");
 
@@ -16,6 +19,16 @@ console.log(isMobile);
 if (isMobile) {
     taskInput.placeholder = "Press enter to add task";
 }
+
+informationButton.addEventListener("click", () => {
+    informationContainer.showModal();
+    informationButton.style.display = 'none'; // Hide the button
+});
+
+closeInformationContainerButton.addEventListener("click", () => {
+    informationContainer.close();
+    informationButton.style.display = 'block'; // Show the button
+});
 
 // Functions
 let toastTimeout;

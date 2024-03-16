@@ -3,7 +3,7 @@ body {
     color: white;
 
     font-family: "Noto Sans Mono";
-    
+
 }
 
 .container {
@@ -55,7 +55,7 @@ body {
     border: 2px #1e1e1e solid;
 
     border-radius: 10px;
-    
+
     transition: 0.3s;
 }
 
@@ -67,7 +67,7 @@ body {
 button {
     font-family: "Noto Sans Mono";
     font-size: 14px;
-    
+
     background: #191919;
     color: white;
 
@@ -86,14 +86,16 @@ button:hover {
     cursor: pointer;
 }
 
-.version_text {
-    position:absolute;
+#information-button {
+    position: absolute;
     bottom: 0;
     right: 0;
 
     margin: 10px;
 
     user-select: none;
+
+    transition: 0.3s;
 }
 
 #toast {
@@ -115,8 +117,8 @@ button:hover {
 }
 
 .checkbox-container {
-    display: flex; 
-    align-items: center; 
+    display: flex;
+    align-items: center;
     margin: 0px;
 }
 
@@ -134,7 +136,7 @@ button:hover {
     height: 15px;
     border-radius: 4px;
     cursor: pointer;
-    margin-right: 10px; 
+    margin-right: 10px;
 
     transition: all 0.3s ease;
 }
@@ -164,6 +166,38 @@ button:hover {
     background-color: #1e1e1e;
 }
 
+.information_container {
+    background: rgba(25, 25, 25, 0.2);
+    backdrop-filter: blur(6px);
+    color: white;
+    margin: 10px auto;
+    border: 2px #1e1e1e solid;
+    border-radius: 10px;
+    width: 50%;
+    max-width: 600px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 40%;
+    transform: translateY(-50%);
+}
+
+.information_container::backdrop {
+    background: rgba(0, 0, 0, 0.8);
+}
+
+.information_container button {
+    margin: 0px;
+}
+
+.information_container h1 {
+    margin: 5px;
+}
+
+.information_container p {
+    margin: 5px;
+}
+
 @media (max-width: 768px) {
     .container {
         display: flex;
@@ -179,7 +213,7 @@ button:hover {
         margin: 7px;
     }
 
-    button {
+    #add-button {
         display: none;
     }
 
@@ -189,5 +223,10 @@ button:hover {
         margin-top: 7px;
         font-size: 13px;
     }
-}
 
+    .information_container {
+        width: 80%;
+    }
+
+
+}
